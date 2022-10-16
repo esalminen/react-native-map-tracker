@@ -18,6 +18,7 @@ const Row = ( { children } ) => (
 
 export default function Controls( { onUpdateLocation, onAddMarker } ) {
   const [ iconSelected, setIconSelected ] = useState( 1 );
+  const [ description, setDescription ] = useState( '' );
 
   /**
    * Handlers to call passed props function.
@@ -27,7 +28,8 @@ export default function Controls( { onUpdateLocation, onAddMarker } ) {
   }
 
   function addMarkerHandler() {
-    onAddMarker( iconSelected );
+    onAddMarker( iconSelected, description );
+    setDescription( '' );
   }
   /*****/
 
@@ -83,32 +85,54 @@ export default function Controls( { onUpdateLocation, onAddMarker } ) {
           </Pressable>
         </Col>
       </Row>
-      <Row>
-        <Col numRows={ 1 }>
-          <Text>Comment:</Text>
-        </Col>
-        <Col numRows={ 1 }>
-          <TextInput placeholder='insert comment here...' />
-        </Col>
-      </Row>
+      <View style={styles.descriptionContainer}>
+        <Text style={styles.descriptionTitle}>Marker Description</Text>
+        <TextInput
+          style={styles.descriptionTextField}
+          value={ description }
+          placeholder='Insert Description Here...'
+          onChangeText={ ( text ) => setDescription( text ) } />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create( {
   container: {
+    backgroundColor: '#fff',
     flex: 4,
     marginHorizontal: 'auto',
     width: '100%',
+    padding: 5,
   },
   row: {
     flexDirection: 'row',
+    marginBottom: 5,
   },
   rowContainer: {
-    flex:1,
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  descriptionContainer: {
+    flex: 1,
+    alignItems: 'center',
+    height: 150,
+    marginBottom: 10,
+  },
+  descriptionTitle: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  descriptionTextField: {
+    backgroundColor: '#fff',
+    borderWidth: 2,
+    borderRadius: 15,
+    borderColor: '#8d97a3',
+    padding: 10,
+    width: '95%',
   },
   "1col": {
     borderColor: "#fff",

@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, Dimensions, ActivityIndicator, Image } from 're
 const MARKER_ICONS = [require('../assets/bird.png'), require('../assets/mushroom.png'), require('../assets/berries.png'), require('../assets/thin-target.png')];
 
 export default function Map( { latitude, longitude, markers } ) {
-  // Delta values show approx. 100m x 100m area
+  // Delta values show approx. 1km x 1km area
   const LATITUDE_DELTA = 0.009;
   const LONGITUDE_DELTA = 0.018;
 
@@ -38,6 +38,7 @@ export default function Map( { latitude, longitude, markers } ) {
             key={ marker.id }
             coordinate={ { latitude: marker.latitude, longitude: marker.longitude } }
             title={ marker.title }
+            description={marker.description}
             anchor={ { x: 0.5, y: 0.5 } }
           >
             <Image

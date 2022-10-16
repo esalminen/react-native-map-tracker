@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, ToastAndroid, Vibration, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { useEffect, useState } from 'react';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
@@ -12,8 +12,10 @@ import Controls from './components/Controls';
 // Storage key for data saving/retrieving.
 const STORAGE_KEY = '@map_tracker_data';
 
+// Vibration patterns. Time unit is ms. Odd cells are pause and even cells are vibration duration.
+const NOTIFY_VIBRATE = [ 0, 200 ]; // 0 ms pause, 200 ms vibration
+
 export default function App() {
-  const [ isTracking, setIsTracking ] = useState( false ); // TODO: not implemented
   const [ errorMsg, setErrorMsg ] = useState( null ); // TODO: not implemented
   const [ location, setLocation ] = useState( null );
   const [ markers, setMarkers ] = useState( [] );
@@ -67,6 +69,7 @@ export default function App() {
    * Refresh location by users request.
    */
   async function onUpdateLocationHandler() {
+    showNotification( 'Updating Location' );
     setLocation( null );
     const location = await Location.getCurrentPositionAsync( { accuracy: Location.Accuracy.BestForNavigation } );
     setLocation( location );
@@ -75,27 +78,46 @@ export default function App() {
   /**
    * Add current location as a marker to markers list.
    * @param {Integer} iconNumber 
+   * @param {String} description 
    */
-  function onAddMarkerHandler( iconNumber ) {
+  function onAddMarkerHandler( iconNumber, description ) {
     const markerData = {
       id: markers.length,
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
       title: `marker_${ markers.length }`,
+      description: description,
       iconIndex: iconNumber,
       timeStamp: location.timestamp
     };
     const newMarkersList = [ ...markers, markerData ];
     setMarkers( newMarkersList );
     saveDataToStorage( newMarkersList );
+    showNotification( 'New Marker Added to List' );
+  }
+
+  /**
+   * Shows short toast notification with short vibration.
+   * @param {String} msg 
+   */
+  function showNotification( msg ) {
+    ToastAndroid.show(
+      msg,
+      ToastAndroid.SHORT
+    );
+    Vibration.vibrate( NOTIFY_VIBRATE );
   }
 
   return (
-    <View style={ styles.container }>
-      <LocationAccuracy accuracy={ location?.coords.accuracy } />
-      <Map latitude={ location?.coords.latitude } longitude={ location?.coords.longitude } markers={ markers } />
-      <Controls onUpdateLocation={ onUpdateLocationHandler } onAddMarker={ onAddMarkerHandler } />
-    </View>
+    <KeyboardAvoidingView style={ styles.container }>
+      <ScrollView>
+        <LocationAccuracy accuracy={ location?.coords.accuracy } />
+        <Map latitude={ location?.coords.latitude } longitude={ location?.coords.longitude } markers={ markers } />
+        <Controls onUpdateLocation={ onUpdateLocationHandler }
+          onAddMarker={ onAddMarkerHandler }
+        />
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
