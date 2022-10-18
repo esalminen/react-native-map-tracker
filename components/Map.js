@@ -1,13 +1,9 @@
 import * as React from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, ActivityIndicator, Image } from 'react-native';
+import { MARKER_ICONS, LATITUDE_DELTA, LONGITUDE_DELTA } from '../utils/Constants';
 
-const MARKER_ICONS = [require('../assets/bird.png'), require('../assets/mushroom.png'), require('../assets/berries.png'), require('../assets/thin-target.png')];
-
-export default function Map( { latitude, longitude, markers } ) {
-  // Delta values show approx. 1km x 1km area
-  const LATITUDE_DELTA = 0.009;
-  const LONGITUDE_DELTA = 0.018;
+export default function Map( { latitude, longitude, markers, mapRef } ) {
 
   if ( !latitude || !longitude ) {
     return (
@@ -22,6 +18,7 @@ export default function Map( { latitude, longitude, markers } ) {
     <View>
       <MapView
         style={ styles.map }
+        ref={mapRef}
         zoomControlEnabled={ true }
         zoomEnabled={ true }
         showsMyLocationButton={ true }
