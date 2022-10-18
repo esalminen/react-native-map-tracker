@@ -1,10 +1,19 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import MarkerItemList from '../components/MarkerItemList';
+import { getDataFromStorage, saveDataToStorage } from '../utils/HelperFunctions';
 
-export default function MarkerListView() {
+export default function MarkerListView({navigation}) {
+  const [ markers, setMarkers ] = useState( null );
+
+  useEffect( () => {
+    ( async () => {
+      const markersData = await getDataFromStorage();
+      setMarkers( markersData );
+    } )();
+  }, [] );
+
+
   return (
-    <View>
-      <Text>MarkerListView</Text>
-    </View>
+    <MarkerItemList markers={ markers } />
   );
 }

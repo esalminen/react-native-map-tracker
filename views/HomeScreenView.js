@@ -1,4 +1,4 @@
-import { View, StyleSheet, Button, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import React from 'react';
 import { vibrateShort } from '../utils/HelperFunctions';
 import CustomButton from '../components/CustomButton';
@@ -16,7 +16,7 @@ export default function HomeScreenView( { navigation } ) {
             vibrateShort();
             navigation.navigate( 'Tracking' );
           } }
-          icon={ require( '../assets/search.png' ) } />
+          icon={ require( '../assets/map.png' ) } />
         <CustomButton
           text={ 'View Markers List' }
           onPress={ () => {

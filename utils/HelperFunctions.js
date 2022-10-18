@@ -1,10 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ToastAndroid, Vibration } from 'react-native';
-
 import { STORAGE_KEY, NOTIFY_VIBRATE, SHORT_VIBRATE, LONG_VIBRATE } from './Constants';
 
 /**
- * Get marker data from phone data storage.
+ * Get data from phone data storage.
  */
 async function getDataFromStorage() {
   try {
@@ -20,7 +19,7 @@ async function getDataFromStorage() {
 }
 
 /**
- * Save marker data to phone data storage.
+ * Save data to phone data storage.
  * @param {[markerObject]} data 
  */
 async function saveDataToStorage( data ) {

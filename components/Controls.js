@@ -1,5 +1,6 @@
-import { View, Text, Button, StyleSheet, Pressable, Image, TextInput, Switch } from 'react-native';
+import { View, Text, Button, StyleSheet, Pressable, Image, TextInput } from 'react-native';
 import React, { useState } from 'react';
+import { MARKER_ICONS } from '../utils/Constants';
 
 
 /**
@@ -49,7 +50,7 @@ export default function Controls( { onUpdateLocation, onAddMarker } ) {
             onPress={ () => setIconSelected( 0 ) }
           >
             <Image
-              source={ require( '../assets/bird.png' ) }
+              source={ MARKER_ICONS[0] }
               style={ styles.thumbnail }
             />
           </Pressable>
@@ -59,7 +60,7 @@ export default function Controls( { onUpdateLocation, onAddMarker } ) {
             onPress={ () => setIconSelected( 1 ) }
           >
             <Image
-              source={ require( '../assets/mushroom.png' ) }
+              source={ MARKER_ICONS[1] }
               style={ styles.thumbnail }
             />
           </Pressable>
@@ -69,7 +70,7 @@ export default function Controls( { onUpdateLocation, onAddMarker } ) {
             onPress={ () => setIconSelected( 2 ) }
           >
             <Image
-              source={ require( '../assets/berries.png' ) }
+              source={ MARKER_ICONS[2] }
               style={ styles.thumbnail }
             />
           </Pressable>
@@ -79,7 +80,7 @@ export default function Controls( { onUpdateLocation, onAddMarker } ) {
             onPress={ () => setIconSelected( 3 ) }
           >
             <Image
-              source={ require( '../assets/thin-target.png' ) }
+              source={ MARKER_ICONS[3] }
               style={ styles.thumbnail }
             />
           </Pressable>
@@ -118,7 +119,7 @@ const styles = StyleSheet.create( {
   descriptionContainer: {
     flex: 1,
     alignItems: 'center',
-    height: 150,
+    height: 100,
     marginBottom: 10,
   },
   descriptionTitle: {
