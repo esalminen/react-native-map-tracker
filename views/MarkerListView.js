@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import MarkerItemList from '../components/MarkerItemList';
 import { getDataFromStorage, saveDataToStorage } from '../utils/HelperFunctions';
 
-export default function MarkerListView({navigation}) {
+export default function MarkerListView( { navigation } ) {
   const [ markers, setMarkers ] = useState( null );
+
+  function markerPressHandler( marker ) {
+    navigation.navigate( 'Tracking', { marker: marker } );
+  }
 
   useEffect( () => {
     ( async () => {
@@ -12,8 +16,7 @@ export default function MarkerListView({navigation}) {
     } )();
   }, [] );
 
-
   return (
-    <MarkerItemList markers={ markers } />
+    <MarkerItemList markers={ markers } onMarkerPress={ markerPressHandler } />
   );
 }

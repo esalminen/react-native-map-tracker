@@ -2,15 +2,15 @@ import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import React from 'react';
 import MarkerItem from './MarkerItem';
 
-export default function MarkerItemList({markers}) {
+export default function MarkerItemList({markers, onMarkerPress}) {
 
   if(!markers) {
-    return <View><Text>Nothing to see here... (no markers)</Text></View>;
+    return <View><Text>Loading...</Text></View>;
   }
   
   return (
     <ScrollView style={styles.container}>
-      {markers.map((item) => <MarkerItem key={item.id} marker={item}/>)}
+      {markers.map((item) => <MarkerItem key={item.id} marker={item} onMarkerPress={onMarkerPress}/>)}
     </ScrollView>
   );
 }
