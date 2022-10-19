@@ -6,13 +6,22 @@ const NOTIFY_VIBRATE = [ 0, 200 ]; // 0 ms pause, 200 ms vibration
 const SHORT_VIBRATE = [ 0, 100 ]; // 0 ms pause, 100 ms vibration
 const LONG_VIBRATE = [ 0, 500 ]; // 0 ms pause, 500 ms vibration
 
-// Map marker icons
-const MARKER_ICONS = [ require( '../assets/bird.png' ), require( '../assets/mushroom.png' ), require( '../assets/berries.png' ), require( '../assets/thin-target.png' ) ];
+// Icon key-values
+const ICONS = {
+  'bird': require( '../assets/bird.png' ),
+  'mushroom': require( '../assets/mushroom.png' ),
+  'berries': require( '../assets/berries.png' ),
+  'target': require( '../assets/thin-target.png' ),
+  'logo': require( '../assets/maptrackerlogo.png' ),
+  'tracking': require( '../assets/map.png' ),
+  'markers': require( '../assets/file.png' ),
+  'help': require( '../assets/information.png' ),
+};
 
 // Help documentation for buttons and icons
 const HELP_ITEMS = [
   {
-    icon: require( '../assets/search.png' ),
+    icon: ICONS[ 'tracking' ],
     title: 'Start Tracking Things',
     description: 'Opens main tracking page and updates location of the user to the map.'
   }
@@ -27,7 +36,7 @@ export {
   NOTIFY_VIBRATE,
   SHORT_VIBRATE,
   LONG_VIBRATE,
-  MARKER_ICONS,
+  ICONS,
   HELP_ITEMS,
   LATITUDE_DELTA,
   LONGITUDE_DELTA

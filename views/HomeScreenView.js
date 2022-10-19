@@ -2,13 +2,14 @@ import { View, StyleSheet, Image } from 'react-native';
 import React from 'react';
 import { vibrateShort } from '../utils/HelperFunctions';
 import CustomButton from '../components/CustomButton';
+import { ICONS } from '../utils/Constants';
 
 export default function HomeScreenView( { navigation } ) {
   return (
     <View style={ styles.container }>
       <Image
         style={ styles.logo }
-        source={ require( '../assets/maptrackerlogo.png' ) } />
+        source={ ICONS[ 'logo' ] } />
       <View style={ styles.buttonContainer }>
         <CustomButton
           text={ 'Start Tracking Things' }
@@ -16,21 +17,21 @@ export default function HomeScreenView( { navigation } ) {
             vibrateShort();
             navigation.navigate( 'Tracking' );
           } }
-          icon={ require( '../assets/map.png' ) } />
+          icon={ ICONS[ 'tracking' ] } />
         <CustomButton
           text={ 'View Markers List' }
           onPress={ () => {
             vibrateShort();
             navigation.navigate( 'MarkerList' );
           } }
-          icon={ require( '../assets/file.png' ) } />
+          icon={ ICONS[ 'markers' ] } />
         <CustomButton
           text={ 'Help' }
           onPress={ () => {
             vibrateShort();
             navigation.navigate( 'Help' );
           } }
-          icon={ require( '../assets/information.png' ) } />
+          icon={ ICONS[ 'help' ] } />
       </View>
     </View>
   );

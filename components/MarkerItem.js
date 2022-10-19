@@ -1,17 +1,17 @@
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import React from 'react';
-import { MARKER_ICONS } from '../utils/Constants';
+import { ICONS } from '../utils/Constants';
 
 export default function MarkerItem( { marker, onMarkerPress } ) {
 
 
   return (
-    <Pressable onPress={()=>onMarkerPress(marker)}>
+    <Pressable onPress={ () => onMarkerPress( marker ) }>
       <View style={ styles.container }>
         <View style={ styles.imageContainer }>
           <Image
             style={ styles.image }
-            source={ MARKER_ICONS[ marker.iconIndex ] }></Image>
+            source={ ICONS[ marker.icon ] }></Image>
         </View>
         <View style={ styles.descriptionContainer }>
           <Text style={ styles.title }>{ marker.title }</Text>

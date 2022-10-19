@@ -1,6 +1,6 @@
 import { View, Text, Button, StyleSheet, Pressable, Image, TextInput } from 'react-native';
 import React, { useState } from 'react';
-import { MARKER_ICONS } from '../utils/Constants';
+import { ICONS } from '../utils/Constants';
 
 
 /**
@@ -18,7 +18,7 @@ const Row = ( { children } ) => (
 /*****/
 
 export default function Controls( { onUpdateLocation, onAddMarker } ) {
-  const [ iconSelected, setIconSelected ] = useState( 1 );
+  const [ iconSelected, setIconSelected ] = useState( 'bird' );
   const [ description, setDescription ] = useState( '' );
 
   /**
@@ -46,50 +46,50 @@ export default function Controls( { onUpdateLocation, onAddMarker } ) {
       </Row>
       <Row>
         <Col numRows={ 1 }>
-          <Pressable style={ [ styles.thumbnailContainer, iconSelected === 0 ? styles.selected : null ] }
-            onPress={ () => setIconSelected( 0 ) }
+          <Pressable style={ [ styles.thumbnailContainer, iconSelected === 'bird' ? styles.selected : null ] }
+            onPress={ () => setIconSelected( 'bird' ) }
           >
             <Image
-              source={ MARKER_ICONS[0] }
+              source={ ICONS[ 'bird' ] }
               style={ styles.thumbnail }
             />
           </Pressable>
         </Col>
         <Col numRows={ 1 }>
-          <Pressable style={ [ styles.thumbnailContainer, iconSelected === 1 ? styles.selected : null ] }
-            onPress={ () => setIconSelected( 1 ) }
+          <Pressable style={ [ styles.thumbnailContainer, iconSelected === 'mushroom' ? styles.selected : null ] }
+            onPress={ () => setIconSelected( 'mushroom' ) }
           >
             <Image
-              source={ MARKER_ICONS[1] }
+              source={ ICONS[ 'mushroom' ] }
               style={ styles.thumbnail }
             />
           </Pressable>
         </Col>
         <Col numRows={ 1 }>
-          <Pressable style={ [ styles.thumbnailContainer, iconSelected === 2 ? styles.selected : null ] }
-            onPress={ () => setIconSelected( 2 ) }
+          <Pressable style={ [ styles.thumbnailContainer, iconSelected === 'berries' ? styles.selected : null ] }
+            onPress={ () => setIconSelected( 'berries' ) }
           >
             <Image
-              source={ MARKER_ICONS[2] }
+              source={ ICONS[ 'berries' ] }
               style={ styles.thumbnail }
             />
           </Pressable>
         </Col>
         <Col numRows={ 1 }>
-          <Pressable style={ [ styles.thumbnailContainer, iconSelected === 3 ? styles.selected : null ] }
-            onPress={ () => setIconSelected( 3 ) }
+          <Pressable style={ [ styles.thumbnailContainer, iconSelected === 'target' ? styles.selected : null ] }
+            onPress={ () => setIconSelected( 'target' ) }
           >
             <Image
-              source={ MARKER_ICONS[3] }
+              source={ ICONS[ 'target' ] }
               style={ styles.thumbnail }
             />
           </Pressable>
         </Col>
       </Row>
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.descriptionTitle}>Marker Description</Text>
+      <View style={ styles.descriptionContainer }>
+        <Text style={ styles.descriptionTitle }>Marker Description</Text>
         <TextInput
-          style={styles.descriptionTextField}
+          style={ styles.descriptionTextField }
           value={ description }
           placeholder='Insert Description Here...'
           onChangeText={ ( text ) => setDescription( text ) } />
