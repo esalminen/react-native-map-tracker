@@ -68,7 +68,7 @@ export default function TrackingView({route}) {
       accuracy: location.coords.accuracy,
       title: `Marker #${ markers.length }`,
       description: description,
-      iconIndex: iconNumber,
+      icon: iconNumber,
       timeStamp: new Date(location.timestamp).toLocaleString(),
     };
     const newMarkersList = [ ...markers, markerData ];

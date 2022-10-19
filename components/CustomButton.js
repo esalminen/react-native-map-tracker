@@ -1,17 +1,17 @@
 import { Pressable, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
 
-export default function CustomButton({onPress, icon, text}) {
+export default function CustomButton( { onPress, icon, text } ) {
   return (
-    <Pressable 
-          style={styles.customButton}
-          onPress={ onPress }
-          >
-          <Image 
-            style={ styles.buttonIcon}
-            source={icon} />
-          <Text>{text}</Text>
-        </Pressable>
+    <Pressable
+      style={ styles.customButton }
+      onPress={ onPress }
+    >
+      <Image
+        style={ styles.buttonIcon }
+        source={ icon } />
+      <Text>{ text }</Text>
+    </Pressable>
   );
 }
 

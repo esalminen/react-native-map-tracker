@@ -1,22 +1,22 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
 
-export default function LocationAccuracy({accuracy}) {
-  const accuracyString = !accuracy ? '__' : accuracy.toFixed(1);
+export default function LocationAccuracy( { accuracy } ) {
+  const accuracyString = !accuracy ? '__' : accuracy.toFixed( 1 );
   return (
-    <View style={[
+    <View style={ [
       styles.container,
-      !accuracy ? styles.undefinedBackground : 
-      accuracy > 20 ? styles.badBackground : 
-      accuracy > 10 ? styles.poorBackground : 
-                          styles.goodBackground
-       ]}>
-      <Text style={styles.accText}>{`GPS Accuracy: +/- ${accuracyString} m`}</Text>
+      !accuracy ? styles.undefinedBackground :
+        accuracy > 20 ? styles.badBackground :
+          accuracy > 10 ? styles.poorBackground :
+            styles.goodBackground
+    ] }>
+      <Text style={ styles.accText }>{ `GPS Accuracy: +/- ${ accuracyString } m` }</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   container: {
     width: '100%',
     padding: 10,
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   }
-});
+} );

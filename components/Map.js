@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, ActivityIndicator, Image } from 'react-native';
-import { MARKER_ICONS, LATITUDE_DELTA, LONGITUDE_DELTA } from '../utils/Constants';
+import { ICONS, LATITUDE_DELTA, LONGITUDE_DELTA } from '../utils/Constants';
 
 export default function Map( { latitude, longitude, markers, mapRef } ) {
 
@@ -18,7 +18,7 @@ export default function Map( { latitude, longitude, markers, mapRef } ) {
     <View>
       <MapView
         style={ styles.map }
-        ref={mapRef}
+        ref={ mapRef }
         zoomControlEnabled={ true }
         zoomEnabled={ true }
         showsMyLocationButton={ true }
@@ -35,13 +35,13 @@ export default function Map( { latitude, longitude, markers, mapRef } ) {
             key={ marker.id }
             coordinate={ { latitude: marker.latitude, longitude: marker.longitude } }
             title={ marker.title }
-            description={marker.description}
+            description={ marker.description }
             anchor={ { x: 0.5, y: 0.5 } }
           >
             <Image
-            source={ MARKER_ICONS[marker.iconIndex] }
-            style={ styles.mapIcon }
-          />
+              source={ ICONS[ marker.icon ] }
+              style={ styles.mapIcon }
+            />
           </Marker>
         ) ) }
       </MapView>

@@ -3,19 +3,19 @@ import React from 'react';
 
 export default function HelpItem( { title, description, icon } ) {
   return (
-    <View style={styles.container}>
+    <View style={ styles.container }>
       <View>
         <Image
           style={ styles.buttonIcon }
           source={ icon } />
         <Text>{ title }</Text>
       </View>
-      <Text>{description}</Text>
+      <Text>{ description }</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   container: {
     backgroundColor: '#fff',
     padding: 10,
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
   helpDescription: {
 
   },
-});
+} );
