@@ -1,5 +1,4 @@
 import { View, StyleSheet, Image } from 'react-native';
-import React from 'react';
 
 // From inside of my project folder.
 import { vibrateShort } from '../utils/HelperFunctions';

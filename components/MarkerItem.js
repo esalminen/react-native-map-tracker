@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
-import React from 'react';
 import { ICONS } from '../utils/Constants';
 
 export default function MarkerItem( { marker, onMarkerPress } ) {

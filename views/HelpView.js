@@ -1,5 +1,4 @@
 import { StyleSheet, ScrollView } from 'react-native';
-import React from 'react';
 
 // From inside of my project folder.
 import { HELP_ITEMS } from '../utils/Constants';
