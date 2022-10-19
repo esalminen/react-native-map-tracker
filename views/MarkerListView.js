@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+
+// From inside of my project folder.
 import MarkerItemList from '../components/MarkerItemList';
 import { getDataFromStorage, saveDataToStorage } from '../utils/HelperFunctions';
 
