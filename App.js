@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Constants from 'expo-constants';
+
+// From inside of my project folder.
 import HomeScreenView from './views/HomeScreenView';
 import TrackingView from './views/TrackingView';
 import MarkerListView from './views/MarkerListView';
@@ -9,8 +9,10 @@ import HelpView from './views/HelpView';
 
 const Stack = createNativeStackNavigator();
 
+/**
+ * Main application component.
+ */
 export default function App() {
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
@@ -25,7 +27,7 @@ export default function App() {
         <Stack.Screen
           name='MarkerList'
           component={ MarkerListView }
-          options={ { title: 'Saved Marker List' } } />
+          options={ { title: 'Saved Markers' } } />
         <Stack.Screen
           name='Help'
           component={ HelpView } />
@@ -33,13 +35,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create( {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    paddingTop: Constants.statusBarHeight * 1.3,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-} );

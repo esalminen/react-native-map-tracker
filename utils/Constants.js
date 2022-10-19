@@ -16,6 +16,7 @@ const ICONS = {
   'tracking': require( '../assets/map.png' ),
   'markers': require( '../assets/file.png' ),
   'help': require( '../assets/information.png' ),
+  'delete': require( '../assets/delete.png' ),
 };
 
 // Help documentation for buttons and icons
