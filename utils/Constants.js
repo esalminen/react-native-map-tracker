@@ -17,6 +17,7 @@ const ICONS = {
   'markers': require( '../assets/file.png' ),
   'help': require( '../assets/information.png' ),
   'delete': require( '../assets/delete.png' ),
+  'clipboard': require( '../assets/clipboard.png' ),
 };
 
 // Help documentation for buttons and icons
