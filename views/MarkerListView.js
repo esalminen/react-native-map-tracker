@@ -2,9 +2,8 @@ import { useContext } from 'react';
 import { Alert } from 'react-native';
 
 // From inside of my project folder.
-import { AppContext } from '../App';
 import MarkerItemList from '../components/MarkerItemList';
-import { saveDataToStorage } from '../utils/HelperFunctions';
+import { saveDataToStorage, AppContext } from '../utils/HelperFunctions';
 import { vibrateShort } from '../utils/HelperFunctions';
 
 /**

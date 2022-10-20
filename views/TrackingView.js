@@ -3,12 +3,11 @@ import { useEffect, useRef, useContext } from 'react';
 import { StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
 
 // From inside of my project folder.
-import { AppContext } from '../App';
 import Controls from '../components/Controls';
 import LocationAccuracy from '../components/LocationAccuracy';
 import Map from '../components/Map';
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from '../utils/Constants';
-import { saveDataToStorage, showNotification } from '../utils/HelperFunctions';
+import { saveDataToStorage, showNotification, AppContext } from '../utils/HelperFunctions';
 
 /**
  * Application Map Tracking View.
