@@ -1,5 +1,5 @@
 import * as Location from 'expo-location';
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -47,6 +47,7 @@ export default function App() {
   }, [] );
 
   return (
+    // Use context to pass state reference to views.
     <AppContext.Provider value={ { markers: markers, setMarkers: setMarkers, location: location, setLocation: setLocation} }>
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Home'>

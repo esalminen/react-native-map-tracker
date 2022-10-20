@@ -9,7 +9,7 @@ import { vibrateShort } from '../utils/HelperFunctions';
 /**
  * Application Marker List View.
  */
-export default function MarkerListView( { navigation, route } ) {
+export default function MarkerListView( { navigation } ) {
   const { markers, setMarkers } = useContext(AppContext);
 
   /**

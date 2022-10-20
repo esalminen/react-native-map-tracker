@@ -1,5 +1,5 @@
 import * as Location from 'expo-location';
-import { useEffect, useRef, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
 
 // From inside of my project folder.
@@ -12,26 +12,19 @@ import { saveDataToStorage, showNotification, AppContext } from '../utils/Helper
 /**
  * Application Map Tracking View.
  */
-export default function TrackingView({route}) {
-  const { location, setLocation, markers, setMarkers } = useContext(AppContext);
-
-  // Used for controlling the map from trackingview.
-  const mapRef = useRef(null);
+export default function TrackingView( { route } ) {
+  const { location, setLocation, markers, setMarkers } = useContext( AppContext );
 
   useEffect( () => {
-
-      // If there is marker object in params then we want to move map to marker location.
-      if (route.params?.marker && mapRef) {
-        const marker = route.params.marker;
-        const moveToRegion = {
-            latitude: marker.latitude,
-            longitude: marker.longitude,
-            latitudeDelta: LATITUDE_DELTA,
-            longitudeDelta: LONGITUDE_DELTA,
-        };
-        mapRef.current.animateToRegion(moveToRegion);
-      }
-  }, [] );  
+    // If there is a marker object in the params then we want to re-locate the map to the selected marker position.
+    if ( route.params?.marker ) {
+      const marker = route.params.marker;
+      let newLocation = {...location};
+      newLocation.coords.latitude = marker.latitude;
+      newLocation.coords.longitude = marker.longitude;
+      setLocation(newLocation);
+    }
+  }, [] );
 
   /**
    * Refresh location by users request.
@@ -53,11 +46,11 @@ export default function TrackingView({route}) {
       id: markers.length,
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
-      accuracy: location.coords.accuracy.toFixed(2),
+      accuracy: location.coords.accuracy.toFixed( 2 ),
       title: `Marker #${ markers.length }`,
       description: description,
       icon: icon,
-      timeStamp: new Date(location.timestamp).toLocaleString(),
+      timeStamp: new Date( location.timestamp ).toLocaleString(),
     };
     const newMarkersList = [ ...markers, markerData ];
     setMarkers( newMarkersList );
@@ -65,11 +58,27 @@ export default function TrackingView({route}) {
     showNotification( 'New Marker Added to List' );
   }
 
+  /**
+   * Sets marker location for current location when drag ends.
+   * @param {event} event 
+   */
+  function onMarkerDragEnd(event){
+    const newCoords = event.nativeEvent.coordinate;
+    let newLocation = {...location};
+    newLocation.coords.latitude = newCoords.latitude;
+    newLocation.coords.longitude = newCoords.longitude;
+    setLocation(newLocation);
+  }
+
   return (
     <KeyboardAvoidingView style={ styles.container }>
       <ScrollView>
         <LocationAccuracy accuracy={ location?.coords.accuracy } />
-        <Map latitude={ location?.coords.latitude } longitude={ location?.coords.longitude } markers={ markers } mapRef={mapRef}/>
+        <Map latitude={ location?.coords.latitude }
+          longitude={ location?.coords.longitude }
+          markers={ markers }
+          onDragEnd={onMarkerDragEnd}
+          />
         <Controls onUpdateLocation={ onUpdateLocationHandler }
           onAddMarker={ onAddMarkerHandler }
         />

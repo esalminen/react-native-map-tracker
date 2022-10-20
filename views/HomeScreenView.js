@@ -1,9 +1,9 @@
-import { View, StyleSheet, Image, Alert } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 
 // From inside of my project folder.
 import CustomButton from '../components/CustomButton';
 import { ICONS } from '../utils/Constants';
-import { getDataFromStorage, vibrateShort } from '../utils/HelperFunctions';
+import { vibrateShort } from '../utils/HelperFunctions';
 
 /**
  * Application Home Screen.
