@@ -1,10 +1,13 @@
 import { View, StyleSheet, Image } from 'react-native';
 
 // From inside of my project folder.
-import { vibrateShort } from '../utils/HelperFunctions';
 import CustomButton from '../components/CustomButton';
 import { ICONS } from '../utils/Constants';
+import { vibrateShort } from '../utils/HelperFunctions';
 
+/**
+ * Application Home Screen.
+ */
 export default function HomeScreenView( { navigation } ) {
   return (
     <View style={ styles.container }>
@@ -43,15 +46,12 @@ const styles = StyleSheet.create( {
     flex: 1,
     backgroundColor: '#ffffff',
     alignItems: 'center',
-    justifyContent: 'flex-start',
   },
   logo: {
     marginTop: 30,
     marginBottom: 30,
   },
   buttonContainer: {
-    height: '30%',
     padding: 20,
-    justifyContent: 'space-between'
   },
 } );
