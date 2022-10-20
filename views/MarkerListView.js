@@ -1,16 +1,32 @@
-import { useContext } from 'react';
-import { Alert } from 'react-native';
+import { useContext, useLayoutEffect } from 'react';
+import { Alert, Image, Pressable } from 'react-native';
+import * as Clipboard from 'expo-clipboard';
 
 // From inside of my project folder.
+import { ICONS } from '../utils/Constants';
 import MarkerItemList from '../components/MarkerItemList';
-import { saveDataToStorage, AppContext } from '../utils/HelperFunctions';
+import { saveDataToStorage, AppContext, showNotification } from '../utils/HelperFunctions';
 import { vibrateShort } from '../utils/HelperFunctions';
 
 /**
  * Application Marker List View.
  */
 export default function MarkerListView( { navigation } ) {
-  const { markers, setMarkers } = useContext(AppContext);
+  const { markers, setMarkers } = useContext( AppContext );
+
+  // Add copy to clipboard button to the top bar
+  useLayoutEffect( () => {
+    navigation.setOptions( {
+      headerRight: () => (
+        <Pressable onPress={ copyToClipboard }>
+          <Image
+            source={ ICONS[ 'clipboard' ] }
+            style={ { width: 32, height: 32 } }
+          />
+        </Pressable>
+      ),
+    } );
+  }, [] );
 
   /**
    * Navigates to selected marker.
@@ -48,8 +64,15 @@ export default function MarkerListView( { navigation } ) {
         }
       ]
     );
-
   }
+
+  /**
+   * Copy markerlist to clipboard as a stringified JSON.
+   */
+  const copyToClipboard = async () => {
+    await Clipboard.setStringAsync( JSON.stringify( markers ) );
+    showNotification( 'Marker data saved to clipboard' );
+  };
 
   return (
     <MarkerItemList markers={ markers } onMarkerPress={ markerPressHandler } onMarkerDeletePress={ markerDeletePress } />
