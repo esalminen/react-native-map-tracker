@@ -1,46 +1,25 @@
 import * as Location from 'expo-location';
-import { StyleSheet, KeyboardAvoidingView, ScrollView, Alert } from 'react-native';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useContext } from 'react';
+import { StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
 
 // From inside of my project folder.
+import { AppContext } from '../App';
 import Controls from '../components/Controls';
 import LocationAccuracy from '../components/LocationAccuracy';
 import Map from '../components/Map';
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from '../utils/Constants';
-import { getDataFromStorage, saveDataToStorage, showNotification } from '../utils/HelperFunctions';
-
+import { saveDataToStorage, showNotification } from '../utils/HelperFunctions';
 
 /**
- * Application Map Tracking View
+ * Application Map Tracking View.
  */
 export default function TrackingView({route}) {
-  const [ location, setLocation ] = useState( null );
-  const [ markers, setMarkers ] = useState( [] );
+  const { location, setLocation, markers, setMarkers } = useContext(AppContext);
 
-  // Use for moving map to marker
+  // Used for controlling the map from trackingview.
   const mapRef = useRef(null);
 
-  //Use-effect hook searches initial location and gets marker data from async storage.
   useEffect( () => {
-    ( async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if ( status !== 'granted' ) {
-        Alert.alert(
-          'Permission to access location was denied',
-          'Please give the required permission from the device settings',
-          [
-            {
-              text: 'Ok',
-              style: 'default',
-            },
-          ]
-        );
-        return;
-      }
-
-      const location = await Location.getCurrentPositionAsync( { accuracy: Location.Accuracy.BestForNavigation } );
-      setLocation( location );
-      const data = await getDataFromStorage();
 
       // If there is marker object in params then we want to move map to marker location.
       if (route.params?.marker && mapRef) {
@@ -53,8 +32,6 @@ export default function TrackingView({route}) {
         };
         mapRef.current.animateToRegion(moveToRegion);
       }
-      setMarkers(data);
-    } )();
   }, [] );  
 
   /**
@@ -69,18 +46,18 @@ export default function TrackingView({route}) {
 
   /**
    * Add current location as a marker to markers list.
-   * @param {Integer} iconNumber 
+   * @param {String} icon
    * @param {String} description 
    */
-  function onAddMarkerHandler( iconNumber, description ) {
+  function onAddMarkerHandler( icon, description ) {
     const markerData = {
       id: markers.length,
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
-      accuracy: location.coords.accuracy,
+      accuracy: location.coords.accuracy.toFixed(2),
       title: `Marker #${ markers.length }`,
       description: description,
-      icon: iconNumber,
+      icon: icon,
       timeStamp: new Date(location.timestamp).toLocaleString(),
     };
     const newMarkersList = [ ...markers, markerData ];

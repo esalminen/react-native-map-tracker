@@ -1,13 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { Alert } from 'react-native';
 
 // From inside of my project folder.
+import { AppContext } from '../App';
 import MarkerItemList from '../components/MarkerItemList';
-import { getDataFromStorage, saveDataToStorage } from '../utils/HelperFunctions';
+import { saveDataToStorage } from '../utils/HelperFunctions';
 import { vibrateShort } from '../utils/HelperFunctions';
 
-export default function MarkerListView( { navigation } ) {
-  const [ markers, setMarkers ] = useState( null );
+/**
+ * Application Marker List View.
+ */
+export default function MarkerListView( { navigation, route } ) {
+  const { markers, setMarkers } = useContext(AppContext);
 
   /**
    * Navigates to selected marker.
@@ -47,13 +51,6 @@ export default function MarkerListView( { navigation } ) {
     );
 
   }
-
-  useEffect( () => {
-    ( async () => {
-      const markersData = await getDataFromStorage();
-      setMarkers( markersData );
-    } )();
-  }, [] );
 
   return (
     <MarkerItemList markers={ markers } onMarkerPress={ markerPressHandler } onMarkerDeletePress={ markerDeletePress } />
