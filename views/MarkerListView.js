@@ -1,22 +1,58 @@
-import React, { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { Alert } from 'react-native';
+
+// From inside of my project folder.
+import { AppContext } from '../App';
 import MarkerItemList from '../components/MarkerItemList';
-import { getDataFromStorage, saveDataToStorage } from '../utils/HelperFunctions';
+import { saveDataToStorage } from '../utils/HelperFunctions';
+import { vibrateShort } from '../utils/HelperFunctions';
 
-export default function MarkerListView( { navigation } ) {
-  const [ markers, setMarkers ] = useState( null );
+/**
+ * Application Marker List View.
+ */
+export default function MarkerListView( { navigation, route } ) {
+  const { markers, setMarkers } = useContext(AppContext);
 
+  /**
+   * Navigates to selected marker.
+   * @param {markerObject} marker 
+   */
   function markerPressHandler( marker ) {
+    vibrateShort();
     navigation.navigate( 'Tracking', { marker: marker } );
   }
 
-  useEffect( () => {
-    ( async () => {
-      const markersData = await getDataFromStorage();
-      setMarkers( markersData );
-    } )();
-  }, [] );
+  /**
+   * Deletes selected marker if user confirms deletion.
+   * @param {markerObject} marker 
+   */
+  function markerDeletePress( marker ) {
+    vibrateShort();
+    Alert.alert(
+      `Delete ${ marker.title }`,
+      'Confirm Deletion?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => vibrateShort(),
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => {
+            vibrateShort();
+            const newMarkers = markers.filter( ( m ) => m.id != marker.id );
+            setMarkers( newMarkers );
+            saveDataToStorage( newMarkers );
+          },
+          style: 'default',
+        }
+      ]
+    );
+
+  }
 
   return (
-    <MarkerItemList markers={ markers } onMarkerPress={ markerPressHandler } />
+    <MarkerItemList markers={ markers } onMarkerPress={ markerPressHandler } onMarkerDeletePress={ markerDeletePress } />
   );
 }

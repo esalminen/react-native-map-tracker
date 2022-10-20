@@ -1,4 +1,3 @@
-import * as React from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, ActivityIndicator, Image } from 'react-native';
 import { ICONS, LATITUDE_DELTA, LONGITUDE_DELTA } from '../utils/Constants';

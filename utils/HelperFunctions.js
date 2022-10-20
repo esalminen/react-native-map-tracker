@@ -3,7 +3,7 @@ import { ToastAndroid, Vibration } from 'react-native';
 import { STORAGE_KEY, NOTIFY_VIBRATE, SHORT_VIBRATE, LONG_VIBRATE } from './Constants';
 
 /**
- * Get data from phone data storage.
+ * Get data from the phone data storage.
  */
 async function getDataFromStorage() {
   try {
@@ -19,7 +19,7 @@ async function getDataFromStorage() {
 }
 
 /**
- * Save data to phone data storage.
+ * Save data to the phone data storage.
  * @param {[markerObject]} data 
  */
 async function saveDataToStorage( data ) {
@@ -32,7 +32,7 @@ async function saveDataToStorage( data ) {
 }
 
 /**
-* Shows short toast notification with short vibration.
+* Shows a short toast notification with a short vibration.
 * @param {String} msg 
 */
 function showNotification( msg ) {
