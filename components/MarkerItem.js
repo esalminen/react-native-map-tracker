@@ -16,6 +16,9 @@ export default function MarkerItem( { marker, onMarkerPress, onMarkerDeletePress
         <Text style={ styles.title }>{ marker.title }</Text>
         <Text style={ styles.time }>{ marker.timeStamp }</Text>
         <Text style={ styles.description }>{ marker.description }</Text>
+        <Text style={ styles.description }>Latitude: { marker.latitude }</Text>
+        <Text style={ styles.description }>Longitude: { marker.longitude }</Text>
+        <Text style={ styles.description }>Accuracy: { marker.accuracy } +/- m</Text>
       </View>
       <Pressable onPress={ () => onMarkerDeletePress( marker )}>
       <View style={styles.deleteIconContainer}>
