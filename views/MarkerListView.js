@@ -56,7 +56,7 @@ export default function MarkerListView( { navigation } ) {
           text: 'OK',
           onPress: () => {
             vibrateShort();
-            const newMarkers = markers.filter( ( m ) => m.id != marker.id );
+            const newMarkers = markers.filter( ( m ) => m.key != marker.key );
             setMarkers( newMarkers );
             saveDataToStorage( newMarkers );
           },

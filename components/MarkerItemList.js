@@ -9,7 +9,7 @@ export default function MarkerItemList( { markers, onMarkerPress, onMarkerDelete
 
   return (
     <ScrollView style={ styles.container }>
-      { markers.map( ( item ) => <MarkerItem key={ item.id } marker={ item } onMarkerPress={ onMarkerPress } onMarkerDeletePress={ onMarkerDeletePress} /> ) }
+      { markers.map( ( item ) => <MarkerItem key={ item.key } marker={ item } onMarkerPress={ onMarkerPress } onMarkerDeletePress={ onMarkerDeletePress} /> ) }
     </ScrollView>
   );
 }
