@@ -3,14 +3,13 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 export default function HelpItem( { title, description, image } ) {
   return (
     <View style={ styles.container }>
-      <View>
+      <View style={ styles.imageContainer }>
         <Image
           style={ styles.image }
           resizeMode='contain'
           source={ image } />
-        <Text>{ title }</Text>
       </View>
-      <Text>{ description }</Text>
+      <Text style={styles.descriptionText}>{ description }</Text>
     </View>
   );
 }
@@ -18,18 +17,21 @@ export default function HelpItem( { title, description, image } ) {
 const styles = StyleSheet.create( {
   container: {
     backgroundColor: '#fff',
-    padding: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 30,
   },
-  rowContainer: {
-
+  imageContainer: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
   },
   image: {
-    width: '60%',
+    width: '90%',
   },
-  helpTitle: {
-
-  },
-  helpDescription: {
-
+  descriptionText: {
+    textAlign: 'left',
+    borderBottomWidth: 3,
+    borderBottomColor: '#ddd',
+    
   },
 } );
