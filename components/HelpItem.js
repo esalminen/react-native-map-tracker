@@ -26,7 +26,7 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
   },
   image: {
-    width: '90%',
+    width: '100%',
   },
   descriptionText: {
     textAlign: 'left',
