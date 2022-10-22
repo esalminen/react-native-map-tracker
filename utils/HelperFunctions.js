@@ -1,3 +1,4 @@
+import { createContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ToastAndroid, Vibration } from 'react-native';
 import { STORAGE_KEY, NOTIFY_VIBRATE, SHORT_VIBRATE, LONG_VIBRATE } from './Constants';
@@ -57,10 +58,14 @@ function vibrateLong() {
   Vibration.vibrate( LONG_VIBRATE );
 }
 
+// Use context to deliver state reference to views.
+const AppContext = createContext();
+
 export {
   getDataFromStorage,
   saveDataToStorage,
   showNotification,
   vibrateShort,
   vibrateLong,
+  AppContext
 };

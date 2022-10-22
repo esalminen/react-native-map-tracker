@@ -1,11 +1,11 @@
 import * as Location from 'expo-location';
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // From inside of my project folder.
-import { getDataFromStorage } from './utils/HelperFunctions';
+import { getDataFromStorage, AppContext } from './utils/HelperFunctions';
 import HomeScreenView from './views/HomeScreenView';
 import TrackingView from './views/TrackingView';
 import MarkerListView from './views/MarkerListView';
@@ -13,9 +13,6 @@ import HelpView from './views/HelpView';
 
 // Stack navigating object.
 const Stack = createNativeStackNavigator();
-
-// Use context to deliver state reference to views.
-export const AppContext = createContext( null );
 
 /**
  * Main application component.
@@ -50,6 +47,7 @@ export default function App() {
   }, [] );
 
   return (
+    // Use context to pass state reference to views.
     <AppContext.Provider value={ { markers: markers, setMarkers: setMarkers, location: location, setLocation: setLocation} }>
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Home'>

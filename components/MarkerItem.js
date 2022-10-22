@@ -15,10 +15,10 @@ export default function MarkerItem( { marker, onMarkerPress, onMarkerDeletePress
       <View style={ styles.descriptionContainer }>
         <Text style={ styles.title }>{ marker.title }</Text>
         <Text style={ styles.time }>{ marker.timeStamp }</Text>
-        <Text style={ styles.description }>{ marker.description }</Text>
         <Text style={ styles.description }>Latitude: { marker.latitude }</Text>
         <Text style={ styles.description }>Longitude: { marker.longitude }</Text>
         <Text style={ styles.description }>Accuracy: { marker.accuracy } +/- m</Text>
+        <Text style={ styles.description }>{ marker.description }</Text>
       </View>
       <Pressable onPress={ () => onMarkerDeletePress( marker )}>
       <View style={styles.deleteIconContainer}>
@@ -43,6 +43,9 @@ const styles = StyleSheet.create( {
     marginBottom: 10,
   },
   imageContainer: {
+    backgroundColor: '#eee',
+    padding: 3,
+    borderRadius: 10,
     marginRight: 10,
   },
   image: {
@@ -55,7 +58,6 @@ const styles = StyleSheet.create( {
   title: {
     fontWeight: 'bold',
     fontSize: 15,
-    marginBottom: 5,
   },
   time: {
     marginBottom: 5,

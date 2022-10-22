@@ -2,7 +2,10 @@ import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, ActivityIndicator, Image } from 'react-native';
 import { ICONS, LATITUDE_DELTA, LONGITUDE_DELTA } from '../utils/Constants';
 
-export default function Map( { latitude, longitude, markers, mapRef } ) {
+/**
+ * Map component of the Tracking View.
+ */
+export default function Map( { latitude, longitude, markers, onDragEnd } ) {
 
   if ( !latitude || !longitude ) {
     return (
@@ -17,7 +20,6 @@ export default function Map( { latitude, longitude, markers, mapRef } ) {
     <View>
       <MapView
         style={ styles.map }
-        ref={ mapRef }
         zoomControlEnabled={ true }
         zoomEnabled={ true }
         showsMyLocationButton={ true }
@@ -29,6 +31,15 @@ export default function Map( { latitude, longitude, markers, mapRef } ) {
           longitudeDelta: LONGITUDE_DELTA,
         } }
       >
+        <Marker
+          coordinate={ {
+            latitude: latitude,
+            longitude: longitude
+          } }
+          draggable={true}
+          onDragEnd={onDragEnd}
+          title={ 'Marker Edit Point' }
+        />
         { markers.map( ( marker ) => (
           <Marker
             key={ marker.id }

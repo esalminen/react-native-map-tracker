@@ -1,15 +1,15 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-export default function HelpItem( { title, description, icon } ) {
+export default function HelpItem( { title, description, image } ) {
   return (
     <View style={ styles.container }>
-      <View>
+      <View style={ styles.imageContainer }>
         <Image
-          style={ styles.buttonIcon }
-          source={ icon } />
-        <Text>{ title }</Text>
+          style={ styles.image }
+          resizeMode='contain'
+          source={ image } />
       </View>
-      <Text>{ description }</Text>
+      <Text style={styles.descriptionText}>{ description }</Text>
     </View>
   );
 }
@@ -17,19 +17,21 @@ export default function HelpItem( { title, description, icon } ) {
 const styles = StyleSheet.create( {
   container: {
     backgroundColor: '#fff',
-    padding: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 30,
   },
-  rowContainer: {
-
+  imageContainer: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
   },
-  buttonIcon: {
-    height: 32,
-    width: 32,
+  image: {
+    width: '90%',
   },
-  helpTitle: {
-
-  },
-  helpDescription: {
-
+  descriptionText: {
+    textAlign: 'left',
+    borderBottomWidth: 3,
+    borderBottomColor: '#ddd',
+    
   },
 } );
