@@ -1,12 +1,13 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-export default function HelpItem( { title, description, icon } ) {
+export default function HelpItem( { title, description, image } ) {
   return (
     <View style={ styles.container }>
       <View>
         <Image
-          style={ styles.buttonIcon }
-          source={ icon } />
+          style={ styles.image }
+          resizeMode='contain'
+          source={ image } />
         <Text>{ title }</Text>
       </View>
       <Text>{ description }</Text>
@@ -22,9 +23,8 @@ const styles = StyleSheet.create( {
   rowContainer: {
 
   },
-  buttonIcon: {
-    height: 32,
-    width: 32,
+  image: {
+    width: '60%',
   },
   helpTitle: {
 

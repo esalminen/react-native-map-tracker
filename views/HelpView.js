@@ -1,24 +1,35 @@
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 
 // From inside of my project folder.
-import { HELP_ITEMS } from '../utils/Constants';
+import { HELP_SCREENS } from '../utils/Constants';
 import HelpItem from '../components/HelpItem';
 
 export default function HelpView() {
   return (
-    <ScrollView style={styles.container}>
-      { HELP_ITEMS.map((item, index)=><HelpItem
-                                        key={index}
-                                        title={item.title} 
-                                        description={item.description}
-                                        icon={item.icon}/>
-                                        )}
+    <ScrollView style={ styles.container }>
+      <View>
+        <HelpItem
+          title={ 'Main screen' }
+          description={ 'test' }
+          image={ HELP_SCREENS[ 'main_help' ] }
+        />
+        <HelpItem
+          title={ 'Main screen' }
+          description={ 'test' }
+          image={ HELP_SCREENS[ 'tracking_help' ] }
+        />
+        <HelpItem
+          title={ 'Main screen' }
+          description={ 'test' }
+          image={ HELP_SCREENS[ 'markerlist_help' ] }
+        />
+      </View>
     </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   container: {
     backgroundColor: '#fff',
   }
-});
+} );

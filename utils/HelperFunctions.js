@@ -59,7 +59,7 @@ function vibrateLong() {
 }
 
 // Use context to deliver state reference to views.
-const AppContext = createContext( null );
+const AppContext = createContext();
 
 export {
   getDataFromStorage,

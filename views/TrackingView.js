@@ -19,10 +19,10 @@ export default function TrackingView( { route } ) {
     // If there is a marker object in the params then we want to re-locate the map to the selected marker position.
     if ( route.params?.marker ) {
       const marker = route.params.marker;
-      let newLocation = {...location};
+      let newLocation = { ...location };
       newLocation.coords.latitude = marker.latitude;
       newLocation.coords.longitude = marker.longitude;
-      setLocation(newLocation);
+      setLocation( newLocation );
     }
   }, [] );
 
@@ -31,7 +31,6 @@ export default function TrackingView( { route } ) {
    */
   async function onUpdateLocationHandler() {
     showNotification( 'Updating Location' );
-    setLocation( null );
     const location = await Location.getCurrentPositionAsync( { accuracy: Location.Accuracy.BestForNavigation } );
     setLocation( location );
   }
@@ -62,12 +61,12 @@ export default function TrackingView( { route } ) {
    * Sets marker location for current location when drag ends.
    * @param {event} event 
    */
-  function onMarkerDragEnd(event){
+  function onMarkerDragEnd( event ) {
     const newCoords = event.nativeEvent.coordinate;
-    let newLocation = {...location};
+    let newLocation = { ...location };
     newLocation.coords.latitude = newCoords.latitude;
     newLocation.coords.longitude = newCoords.longitude;
-    setLocation(newLocation);
+    setLocation( newLocation );
   }
 
   return (
@@ -77,8 +76,8 @@ export default function TrackingView( { route } ) {
         <Map latitude={ location?.coords.latitude }
           longitude={ location?.coords.longitude }
           markers={ markers }
-          onDragEnd={onMarkerDragEnd}
-          />
+          onDragEnd={ onMarkerDragEnd }
+        />
         <Controls onUpdateLocation={ onUpdateLocationHandler }
           onAddMarker={ onAddMarkerHandler }
         />

@@ -8,26 +8,24 @@ const LONG_VIBRATE = [ 0, 500 ]; // 0 ms pause, 500 ms vibration
 
 // Icon key-values
 const ICONS = {
-  'bird': require( '../assets/bird.png' ),
-  'mushroom': require( '../assets/mushroom.png' ),
-  'berries': require( '../assets/berries.png' ),
-  'target': require( '../assets/thin-target.png' ),
-  'logo': require( '../assets/maptrackerlogo.png' ),
-  'tracking': require( '../assets/map.png' ),
-  'markers': require( '../assets/file.png' ),
-  'help': require( '../assets/information.png' ),
-  'delete': require( '../assets/delete.png' ),
-  'clipboard': require( '../assets/clipboard.png' ),
+  'bird': require( '../assets/icons/bird.png' ),
+  'mushroom': require( '../assets/icons/mushroom.png' ),
+  'berries': require( '../assets/icons/berries.png' ),
+  'target': require( '../assets/icons/thin-target.png' ),
+  'logo': require( '../assets/icons/maptrackerlogo.png' ),
+  'tracking': require( '../assets/icons/map.png' ),
+  'markers': require( '../assets/icons/file.png' ),
+  'help': require( '../assets/icons/information.png' ),
+  'delete': require( '../assets/icons/delete.png' ),
+  'clipboard': require( '../assets/icons/clipboard.png' ),
 };
 
-// Help documentation for buttons and icons
-const HELP_ITEMS = [
-  {
-    icon: ICONS[ 'tracking' ],
-    title: 'Start Tracking Things',
-    description: 'Opens main tracking page and updates location of the user to the map.'
-  }
-];
+// Help screens for documentation
+const HELP_SCREENS = {
+  'main_help': require( '../assets/help_screens/main_help.png' ),
+  'markerlist_help': require( '../assets/help_screens/markerlist_help.png' ),
+  'tracking_help': require( '../assets/help_screens/tracking_help.png' ),
+};
 
 // Delta values show approx. 1km x 1km area
 const LATITUDE_DELTA = 0.009;
@@ -39,7 +37,7 @@ export {
   SHORT_VIBRATE,
   LONG_VIBRATE,
   ICONS,
-  HELP_ITEMS,
+  HELP_SCREENS,
   LATITUDE_DELTA,
   LONGITUDE_DELTA
 };

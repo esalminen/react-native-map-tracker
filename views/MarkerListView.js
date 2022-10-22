@@ -14,7 +14,7 @@ import { vibrateShort } from '../utils/HelperFunctions';
 export default function MarkerListView( { navigation } ) {
   const { markers, setMarkers } = useContext( AppContext );
 
-  // Add copy to clipboard button to the top bar
+  // Add 'copy to clipboard' button to the top bar
   useLayoutEffect( () => {
     navigation.setOptions( {
       headerRight: () => (
