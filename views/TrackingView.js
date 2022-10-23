@@ -43,7 +43,6 @@ export default function TrackingView( { route } ) {
   function onAddMarkerHandler( icon, description ) {
     const markerData = {
       key: Date.now(),
-      id: markers.length,
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
       accuracy: location.coords.accuracy.toFixed( 2 ),
