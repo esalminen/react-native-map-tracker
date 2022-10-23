@@ -30,6 +30,7 @@ export default function TrackingView( { route } ) {
    */
   async function onUpdateLocationHandler() {
     showNotification( 'Updating Location' );
+    setLocation(null);
     const location = await Location.getCurrentPositionAsync( { accuracy: Location.Accuracy.BestForNavigation } );
     setLocation( location );
   }
