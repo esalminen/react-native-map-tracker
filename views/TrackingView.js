@@ -4,10 +4,9 @@ import { StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
 
 // From inside of my project folder.
 import Controls from '../components/Controls';
+import { saveDataToStorage, showNotification, AppContext } from '../utils/HelperFunctions';
 import LocationAccuracy from '../components/LocationAccuracy';
 import Map from '../components/Map';
-import { LATITUDE_DELTA, LONGITUDE_DELTA } from '../utils/Constants';
-import { saveDataToStorage, showNotification, AppContext } from '../utils/HelperFunctions';
 
 /**
  * Application Map Tracking View.
@@ -31,6 +30,7 @@ export default function TrackingView( { route } ) {
    */
   async function onUpdateLocationHandler() {
     showNotification( 'Updating Location' );
+    setLocation(null);
     const location = await Location.getCurrentPositionAsync( { accuracy: Location.Accuracy.BestForNavigation } );
     setLocation( location );
   }
@@ -42,7 +42,7 @@ export default function TrackingView( { route } ) {
    */
   function onAddMarkerHandler( icon, description ) {
     const markerData = {
-      id: markers.length,
+      key: Date.now(),
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
       accuracy: location.coords.accuracy.toFixed( 2 ),
