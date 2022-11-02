@@ -42,7 +42,7 @@ export default function Map( { latitude, longitude, markers, onDragEnd } ) {
         />
         { markers.map( ( marker ) => (
           <Marker
-            key={ marker.id }
+            key={ marker.key }
             coordinate={ { latitude: marker.latitude, longitude: marker.longitude } }
             title={ marker.title }
             description={ marker.description }
